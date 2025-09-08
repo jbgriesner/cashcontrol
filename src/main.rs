@@ -1,7 +1,7 @@
 mod cli;
 mod domain;
-mod services;
 mod storage;
+mod use_cases;
 
 fn main() {
     println!("Hello, world!");

@@ -21,8 +21,8 @@ impl<R: Repository<Budget>> BudgetService<R> {
         Ok(id)
     }
 
-    pub fn get_metrics(&self) -> impl FinancialMetrics {
-        self.budget
+    pub fn metrics(&self) -> &impl FinancialMetrics {
+        &self.budget
     }
 
     // pub fn get_filter(&self) -> impl TransactionFilter + '_ {
