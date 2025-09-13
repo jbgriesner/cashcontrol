@@ -1,4 +1,4 @@
-use chrono::{DateTime, Local, NaiveDate};
+use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
 use crate::domain::{money::Money, Validate};
