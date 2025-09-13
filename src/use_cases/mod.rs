@@ -1,5 +1,5 @@
 use crate::{
-    domain::{budget::Budget, transaction::Transaction, FinancialMetrics},
+    domain::{budget::Budget, transaction::Transaction, FinancialMetrics, TransactionFilter},
     storage::Repository,
 };
 use anyhow::Result;
@@ -9,7 +9,7 @@ pub struct BudgetService<R> {
     budget: Budget,
 }
 
-impl<R: Repository<Budget>> BudgetService<R> {
+impl<R: Repository> BudgetService<R> {
     pub async fn new(repository: R) -> Result<Self> {
         let budget = repository.load().await?;
         Ok(Self { repository, budget })
@@ -25,9 +25,9 @@ impl<R: Repository<Budget>> BudgetService<R> {
         &self.budget
     }
 
-    // pub fn get_filter(&self) -> impl TransactionFilter + '_ {
-    //     &self.budget
-    // }
+    pub fn get_filter(&self) -> &impl TransactionFilter {
+        &self.budget
+    }
 
     pub fn transactions(&self) -> &[Transaction] {
         self.budget.transactions()

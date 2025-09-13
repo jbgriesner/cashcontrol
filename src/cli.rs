@@ -3,13 +3,13 @@ use clap::{arg, command, Parser, Subcommand};
 #[derive(Parser)]
 #[command(name = "budget")]
 #[command(about = "Un gestionnaire de budget personnel simple")]
-struct Cli {
+pub struct Cli {
     #[command(subcommand)]
-    command: Commands,
+    pub(crate) command: Commands,
 }
 
 #[derive(Subcommand)]
-enum Commands {
+pub enum Commands {
     Add {
         #[arg(short, long)]
         amount: f64,
@@ -25,4 +25,5 @@ enum Commands {
     Category {
         name: String,
     },
+    Stats,
 }
